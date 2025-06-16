@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<main>
+    <div class='container mt-5'>
+    <h3>All Clients</h3>
+    <hr>
+    <div class='row'>
+
+        
+    {% for client in clients %}
+    <div class='col-md-4'>
+    <div class='card p-4'>
+        <div class="client-card">
+           
+            <h4>{{ client.name }} (<a href="{% url 'view_client' client.id %}">{{ client.client_code }}</a>)</h4>
+            <p><strong>Contact:</strong> {{ client.contact }}<br>
+            <small><strong>Status:</strong> {{ client.project_status }}</small></p>
+            <p>
+                <a class='btn btn-outline-dark btn-sm' href="{{ client.url_link }}" target="_blank">View Site</a>
+            </p>
+            <p><small><strong>Description:</strong> {{ client.description }}</small></p>
+            <div class='row'>
+                <div class="client-images">
+                    {% for img in client.project_images.all %}
+                        <img style='width:100%;' src="{{ img.image.url }}" alt="Project Image">
+                    {% empty %}
+                        <p>No project images.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    {% empty %}
+        <p>No clients available.</p>
+            </div>
+        </div>
+        </div>
+    {% endfor %}
+
+</div></div>
+    </main>
+  {% endblock %}

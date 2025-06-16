@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<main>
+    <div class='container mt-5'>
+    
+    <div class='row'>
+
+    <p><strong>Name:</strong> {{ client.name }}</p>
+    <p><strong>Client Code:</strong> {{ client.client_code }}</p>
+    <p><strong>Contact:</strong> {{ client.contact }}</p>
+    <p><strong>Address:</strong> {{ client.address }}</p>
+    <p><strong>Description:</strong> {{ client.description }}</p>
+    <p><strong>Status:</strong> {{ client.project_status }}</p>
+    <p><strong>Website:</strong> 
+        <a href="{{ client.url }}" target="_blank">{{ client.url_link }}</a>
+    </p>
+
+  <div class='row'>
+{% if client.project_images.all %}
+    {% for img in client.project_images.all %}
+  
+       <div class='col-md-12'> <img src="{{ img.image.url }}" alt="Project Image" width="100%" style="margin:10px;"></div>
+    {% endfor %}
+{% else %}
+    <p>No images uploaded.</p>
+{% endif %}
+  </div>
+  
+</div>
+<div class='p-2'>
+  <a class='btn btn-primary btn-sm' href="{% url 'add_client' %}">Add Another Client</a>
+</div>
+</div></div>
+    </main>
+  {% endblock %}

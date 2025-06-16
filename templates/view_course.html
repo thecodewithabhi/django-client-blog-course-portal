@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Courses | CodewithAbhi{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+<div class='row'>
+
+    {% for course in courses %}
+    <div class='col-md-4'  style='overflow: auto;height: 450px;'>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">{{ course.name }}</h4>
+            <hr>
+            <p><strong>Duration:</strong> {{ course.duration }} hours</p>
+            <p><small>{{ course.description|safe }}</small></p>
+           
+            <div class="accordion" id="accordionExample">
+            {% if course.modules.all %}
+          
+            
+                {% for module in course.modules.all %}
+                  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne{{ module.id}}">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne{{ module.id}}" aria-expanded="true" aria-controls="collapseOne{{ module.id}}">
+       <strong>{{ module.title }}</strong>
+
+      </button>
+    </h2>
+
+    <div id="collapseOne{{ module.id}}"   class="accordion-collapse collapse show" aria-labelledby="headingOne{{ module.id}}" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+       <small>{{ module.content|safe }}</small>
+      </div>
+    </div>
+  
+</div>
+             
+                {% endfor %}
+
+            
+            {% else %}
+            <p>No modules added yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+    </div>
+    {% empty %}
+    <p>No courses found.</p>
+    {% endfor %}
+</div>
+</div>
+{% endblock %}

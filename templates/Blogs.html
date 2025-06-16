@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<main>
+    <div class='container mt-5'>
+  
+    <div class='row'>
+
+
+    {% for blog in blogs %}
+    <div class='col-md-4'>
+    <div class='card'>
+        <div class="blog-card">
+           
+            {% if blog.thumbnail %}
+                <img width="100%" src="{{ blog.thumbnail.url }}" class="thumbnail" alt="Blog Image">
+            {% endif %}
+            <div class='p-3'>
+             <h4>{{ blog.title }}</h4>
+            <p><strong>Author:</strong> {{ blog.author.name }}<br>
+            <small><strong>Date:</strong> {{ blog.published_date }}</small></p>
+            <p class='card-text'>{{ blog.content|safe|truncatechars:200 }}</p>
+             <a class='btn btn-success btn-sm' href="{% url 'blog_detail' slug=blog.slug %}">Read More</a>
+            </div>
+        </div>
+    </div>
+</div>
+    {% empty %}
+        <p>No blogs published yet.</p>
+    {% endfor %}
+</div></div>
+    </main>
+  {% endblock %}
