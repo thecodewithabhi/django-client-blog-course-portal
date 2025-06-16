@@ -61,11 +61,17 @@ Developed by **CodewithAbhi | Abhishek Shakya**, this project is ideal for agenc
    Client dashboard: http://localhost:8000/courses/
 
      project/
+   
   ├── member/         # Client model & views
+  
   ├── blogs/          # Blog model, CKEditor, views
+  
   ├── course/         # Courses & modules
+  
   ├── templates/      # Base and module-specific HTML
+  
   ├── static/         # CSS/JS assets
+  
   └── manage.py
 
   🙌 Credits
